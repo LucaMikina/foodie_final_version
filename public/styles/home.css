@@ -313,7 +313,7 @@
   border-radius: 0 3px 3px 0;
 }
 
-.fh-notch {
+.fh-dynamic-island {
   position: absolute;
   z-index: 15;
   top: 7px;

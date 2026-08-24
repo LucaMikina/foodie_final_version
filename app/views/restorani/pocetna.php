@@ -95,8 +95,8 @@ require __DIR__ . '/../layouts/header.php';
                     <div><strong>Brzo naručivanje</strong><small>Sve na par dodira</small></div>
                 </div>
 
-                <div class="fh-phone" data-phone-restaurants="<?= $telefonJson ?>">
-                    <div class="fh-notch"></div>
+                <div class="fh-phone fh-iphone17-pro" data-phone-restaurants="<?= $telefonJson ?>">
+                    <div class="fh-dynamic-island" aria-hidden="true"><span></span></div>
                     <div class="fh-screen">
                         <div class="fh-status">
                             <strong>9:41</strong>
