@@ -11,7 +11,7 @@
 </head>
 <body class="foodie-polish d-flex align-items-center justify-content-center min-vh-100">
     <div class="text-center">
-        <p class="mb-4"><span class="brand-mark-text brand-mark-text--md">Fo<span class="bm-gold">o</span>die</span></p>
+        <p class="mb-4"><span class="brand-mark-text brand-mark-text--md">Foodie</span></p>
         <h1 class="display-heading display-3 text-tomato">403</h1>
         <p class="lead text-secondary">Nemate ovlasti za pristup ovoj stranici.</p>
         <a href="<?= BASE_URL ?>/public/index.php" class="btn btn-primary mt-3">Natrag na početnu</a>
