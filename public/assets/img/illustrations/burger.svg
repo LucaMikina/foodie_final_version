@@ -1,0 +1,62 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bunTop" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F0B84E"/>
+      <stop offset="100%" stop-color="#D99A2E"/>
+    </linearGradient>
+    <linearGradient id="bunBottom" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8AA3E"/>
+      <stop offset="100%" stop-color="#CE8C25"/>
+    </linearGradient>
+    <linearGradient id="pattyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6B4226"/>
+      <stop offset="100%" stop-color="#4E2E19"/>
+    </linearGradient>
+    <filter id="softShadow2" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#000" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <!-- sjena -->
+  <ellipse cx="200" cy="330" rx="140" ry="16" fill="#17130F" opacity="0.08"/>
+
+  <g filter="url(#softShadow2)">
+    <!-- donja pecivo -->
+    <path d="M70 300 Q70 270 100 270 L300 270 Q330 270 330 300 L330 310 Q330 320 320 320 L80 320 Q70 320 70 310 Z" fill="url(#bunBottom)"/>
+
+    <!-- listić salate -->
+    <path d="M65 265 Q90 245 140 258 Q190 240 240 258 Q290 242 335 265 L332 278 Q200 260 68 278 Z" fill="#6E9B3E"/>
+
+    <!-- odrezak (pljeskavica) -->
+    <rect x="75" y="232" width="250" height="36" rx="18" fill="url(#pattyGrad)"/>
+
+    <!-- sir -->
+    <path d="M70 228 L330 228 L322 250 Q200 262 78 250 Z" fill="#F5C33C"/>
+
+    <!-- rajčica -->
+    <ellipse cx="130" cy="222" rx="26" ry="9" fill="#E24A36"/>
+    <ellipse cx="220" cy="222" rx="26" ry="9" fill="#E24A36"/>
+    <ellipse cx="290" cy="220" rx="22" ry="8" fill="#E24A36"/>
+
+    <!-- gornje pecivo (kupola) -->
+    <path d="M75 210 Q75 130 200 128 Q325 130 325 210 Z" fill="url(#bunTop)"/>
+  </g>
+
+  <g fill="#3A2312" opacity="0.5">
+    <circle cx="120" cy="248" r="3"/>
+    <circle cx="160" cy="255" r="2.5"/>
+    <circle cx="210" cy="245" r="3"/>
+    <circle cx="260" cy="252" r="2.5"/>
+    <circle cx="290" cy="244" r="2.5"/>
+  </g>
+
+  <!-- sezam -->
+  <g fill="#FCEFD2">
+    <ellipse cx="150" cy="165" rx="5" ry="3" transform="rotate(-20 150 165)"/>
+    <ellipse cx="190" cy="150" rx="5" ry="3" transform="rotate(10 190 150)"/>
+    <ellipse cx="230" cy="162" rx="5" ry="3" transform="rotate(-15 230 162)"/>
+    <ellipse cx="170" cy="185" rx="5" ry="3" transform="rotate(25 170 185)"/>
+    <ellipse cx="255" cy="185" rx="5" ry="3" transform="rotate(-10 255 185)"/>
+    <ellipse cx="210" cy="195" rx="5" ry="3" transform="rotate(15 210 195)"/>
+  </g>
+</svg>

@@ -1,0 +1,3 @@
+ALTER TABLE narudzbe
+    ADD COLUMN IF NOT EXISTS dostava_km DECIMAL(8,2) DEFAULT NULL AFTER dostava_lng,
+    ADD COLUMN IF NOT EXISTS cijena_dostave DECIMAL(8,2) NOT NULL DEFAULT 0 AFTER dostava_km;
