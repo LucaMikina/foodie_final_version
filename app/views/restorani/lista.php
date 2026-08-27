@@ -17,17 +17,16 @@ require __DIR__ . '/../layouts/header.php';
                 <span class="wolt-result-count"><strong><?= count($podaci['restorani']) ?></strong> restorana</span>
             </div>
 
-            <form method="get" class="wolt-main-search" role="search">
-                <input type="hidden" name="stranica" value="restorani">
-                <?php if ($aktivnaKategorija > 0): ?>
-                    <input type="hidden" name="kategorija_id" value="<?= $aktivnaKategorija ?>">
-                <?php endif; ?>
-                <i class="bi bi-search"></i>
-                <input type="search" name="pojam" placeholder="Pretraži restorane..." value="<?= htmlspecialchars($pojam) ?>" autocomplete="off">
-                <?php if ($pojam !== ''): ?>
-                    <a class="wolt-search-clear" href="?stranica=restorani<?= $aktivnaKategorija ? '&kategorija_id=' . $aktivnaKategorija : '' ?>" aria-label="Očisti pretragu"><i class="bi bi-x-lg"></i></a>
-                <?php endif; ?>
-                <button type="submit">Pretraži</button>
+            <form method="get" action="">
+            <input type="hidden" name="stranica" value="restorani">
+            <?php foreach ($podaci['kategorije'] as $kat): ?>
+                <label class="wolt-category-tile">
+                    <input type="checkbox" name="kategorija_id[]" value="<?= $kat['id'] ?>"
+                        <?= in_array($kat['id'], $aktivneKategorije) ? 'checked' : '' ?>>
+                    <?= htmlspecialchars($kat['naziv']) ?>
+                </label>
+            <?php endforeach; ?>
+            <button type="submit">Filtriraj</button>
             </form>
         </div>
     </section>
