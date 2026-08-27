@@ -4181,3 +4181,11 @@ body.foodie-wolt.homepage-landing .fh-category-icon img {
     width: min(262px, calc(100vw - 32px)) !important;
   }
 }
+
+#popularni-restorani {
+  color: #ff0000 !important;
+}
+
+#popularni-restorani span {
+  color: #ff0000 !important;
+}
