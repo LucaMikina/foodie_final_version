@@ -1,7 +1,7 @@
 <?php
 $naslovStranice = 'Restorani';
 
-// Pokupi SVE odabrane kategorije kao niz brojeva (radi i za checkbox[] i za stari single format iz linkova)
+// Pokupi SVE odabrane kategorije kao niz brojeva (radi i za niz i za pojedinacnu vrijednost)
 $sirovKategorije = $_GET['kategorija_id'] ?? [];
 if (!is_array($sirovKategorije)) {
     $sirovKategorije = [$sirovKategorije];
@@ -10,6 +10,27 @@ $kategorijaIds = array_values(array_filter(array_map('intval', $sirovKategorije)
 
 $pojam = trim((string) ($_GET['pojam'] ?? ''));
 require __DIR__ . '/../layouts/header.php';
+
+// Pomocna funkcija - napravi URL koji DODA ili UKLONI jednu kategoriju iz trenutno odabranih
+function foodieKategorijaToggleUrl(array $trenutneKategorije, int $katId, string $pojam): string
+{
+    if (in_array($katId, $trenutneKategorije, true)) {
+        // vec je odabrana -> ukloni je (klik ponovo = deselektuj)
+        $nove = array_values(array_diff($trenutneKategorije, [$katId]));
+    } else {
+        // nije odabrana -> dodaj je
+        $nove = array_merge($trenutneKategorije, [$katId]);
+    }
+
+    $query = ['stranica' => 'restorani'];
+    if ($pojam !== '') {
+        $query['pojam'] = $pojam;
+    }
+    if (!empty($nove)) {
+        $query['kategorija_id'] = $nove;
+    }
+    return '?' . http_build_query($query);
+}
 ?>
 
 <main class="wolt-restaurants-page">
@@ -23,21 +44,6 @@ require __DIR__ . '/../layouts/header.php';
                 </div>
                 <span class="wolt-result-count"><strong><?= count($podaci['restorani']) ?></strong> restorana</span>
             </div>
-
-            <form method="get" action="">
-            <input type="hidden" name="stranica" value="restorani">
-            <?php if ($pojam !== ''): ?>
-                <input type="hidden" name="pojam" value="<?= htmlspecialchars($pojam) ?>">
-            <?php endif; ?>
-            <?php foreach (($podaci['kategorije'] ?? []) as $kat): ?>
-                <label class="wolt-category-tile">
-                    <input type="checkbox" name="kategorija_id[]" value="<?= (int) $kat['id'] ?>"
-                        <?= in_array((int) $kat['id'], $kategorijaIds, true) ? 'checked' : '' ?>>
-                    <?= htmlspecialchars($kat['naziv']) ?>
-                </label>
-            <?php endforeach; ?>
-            <button type="submit">Filtriraj</button>
-        </form>
         </div>
     </section>
 
@@ -58,14 +64,13 @@ require __DIR__ . '/../layouts/header.php';
                 <?php foreach (($podaci['kategorije'] ?? []) as $kat): ?>
                     <?php
                     $katId = (int) $kat['id'];
-                    $query = ['stranica' => 'restorani', 'kategorija_id' => [$katId]];
-                    if ($pojam !== '') {
-                        $query['pojam'] = $pojam;
-                    }
+                    $jeAktivna = in_array($katId, $kategorijaIds, true);
                     ?>
-                    <a href="?<?= htmlspecialchars(http_build_query($query)) ?>" class="wolt-category-tile <?= in_array($katId, $kategorijaIds, true) ? 'active' : '' ?>">
+                    <a href="<?= htmlspecialchars(foodieKategorijaToggleUrl($kategorijaIds, $katId, $pojam)) ?>"
+                       class="wolt-category-tile <?= $jeAktivna ? 'active' : '' ?>">
                         <span class="wolt-category-art"><img src="<?= foodieKategorijaIkona($kat['naziv']) ?>" alt=""></span>
                         <span><?= htmlspecialchars($kat['naziv']) ?></span>
+                        <?php if ($jeAktivna): ?><i class="bi bi-check-circle-fill wolt-category-check"></i><?php endif; ?>
                     </a>
                 <?php endforeach; ?>
             </div>
